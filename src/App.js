@@ -5,8 +5,6 @@ import Iconfont from './statics/iconfont/iconfont';
 import CSSReset from './style';
 import store from './store';
 
-
-
 class App extends Component{
 
   render(){
