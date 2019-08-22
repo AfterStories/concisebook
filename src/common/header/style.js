@@ -102,11 +102,12 @@ export const  SearchInfoList= styled.div`
 export const SearchInfoItem = styled.a`
     line-height:20px;
     padding:0 5px;
-    margin:0 10px 10px 0;
+    margin:0 10px 5px 0;
     font-size:12px; 
     border:1px solid #ddd;
     color:#969696;
     border-radius:2px;
+    float:left;
 `
 
 

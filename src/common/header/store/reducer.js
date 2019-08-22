@@ -2,20 +2,33 @@ import * as constants from './constants';
 
 import { fromJS} from 'immutable';
 const defaultState = fromJS({
-    focused:false
+    focused:false,
+    mouseIn:false,
+    list:[],//fromJS已经把这个数组转化成了immutable对象，在set进去数据的时候要注意，应当转换成immutable数据放进去
+    page:1,
+    totalPage:1
 });
     
 
 
-export default (state = defaultState,action) => {
-    if(action.type === constants.SEARCH_FOCUS){
-        //set方法会结合之前的immutable的值生成一个新的对象
-        return state.set('focused',true);
-    }
-    if(action.type === constants.SEARCH_BLUR){
-        return state.set('focused',false);
-    }
-    
-    return state;
-
+export default (state = defaultState, action) => {
+	switch(action.type) {
+		case constants.SEARCH_FOCUS:
+			return state.set('focused', true);
+		case constants.SEARCH_BLUR:
+			return state.set('focused', false);
+		case constants.CHANGE_LIST:
+			return state.merge({
+				list: action.data,
+				totalPage: action.totalPage
+			});
+		case constants.MOUSE_ENTER:
+			return state.set('mouseIn', true);
+		case constants.MOUSE_LEAVE:
+			return state.set('mouseIn', false);
+		case constants.CHANGE_PAGE:
+			return state.set('page', action.page);
+		default:
+			return state;
+	}
 }
